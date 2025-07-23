@@ -4,18 +4,18 @@
 
 ```mermaid
 graph TB
-    subgraph "CMS Mental Model"
+    subgraph CMS_Mental_Model[CMS Mental Model]
         CMS[One Template System]
-        CMS --> |"Change once"| Site1[App A]
-        CMS --> |"Same code"| Site2[Website B]
-        CMS --> |"Just different colors"| Site3[App C]
+        CMS --> Site1[App A]
+        CMS --> Site2[Website B]
+        CMS --> Site3[App C]
     end
 
-    subgraph "Mobile App Reality"
-        Core[Shared Core<br/>30% of code]
-        Core --> |"+ Store Pickup Logic"| WLAC[WLAC App<br/>70% custom]
-        Core --> |"+ Bulk Order Logic"| WBS[WBS/Baer App<br/>70% custom]
-        Core --> |"+ Different Features"| Mobile[Mobile Apps<br/>70% custom]
+    subgraph Mobile_App_Reality[Mobile App Reality]
+        Core["Shared Core<br/>30% of code"]
+        Core --> WLAC["WLAC App<br/>Store Pickup Logic<br/>70% custom"]
+        Core --> WBS["WBS/Baer App<br/>Bulk Order Logic<br/>70% custom"]
+        Core --> Mobile["Mobile Apps<br/>Different Features<br/>70% custom"]
     end
 
     style CMS fill:#90EE90
@@ -26,15 +26,15 @@ graph TB
 
 ```mermaid
 graph TD
-    subgraph "✅ What We Successfully Share"
-        Atoms[Atoms<br/>Buttons, Icons, Inputs<br/>💯 100% Shared]
-        Molecules[Molecules<br/>Product Cards, Form Fields<br/>👍 80% Shared]
-        Organisms[Organisms<br/>Headers, Footers, Nav<br/>🤝 60% Shared]
+    subgraph "What We Successfully Share"
+        Atoms["Atoms<br/>Buttons, Icons, Inputs<br/>100% Shared"]
+        Molecules["Molecules<br/>Product Cards, Form Fields<br/>80% Shared"]
+        Organisms["Organisms<br/>Headers, Footers, Nav<br/>60% Shared"]
     end
     
-    subgraph "❌ Where Sharing Breaks Down"
-        Templates[Templates<br/>Page Layouts<br/>⚠️ 30% Shared]
-        Pages[Pages<br/>Complete Screens<br/>🚫 10% Shared]
+    subgraph "Where Sharing Breaks Down"
+        Templates["Templates<br/>Page Layouts<br/>30% Shared"]
+        Pages["Pages<br/>Complete Screens<br/>10% Shared"]
     end
     
     subgraph "Why Templates/Pages Can't Be Shared"
@@ -120,28 +120,18 @@ graph TD
 
 ```mermaid
 graph TB
-    subgraph "❌ Monolithic Approach (What Client Imagines)"
+    subgraph "Monolithic Approach - What Client Imagines"
         Giant[GiantProductComponent.tsx<br/>2000+ lines]
-        Giant --> Code[
-            IF tenant === 'WLAC':<br/>
-            &nbsp;&nbsp;show 20 WLAC features<br/>
-            &nbsp;&nbsp;handle WLAC workflows<br/>
-            &nbsp;&nbsp;apply WLAC rules<br/>
-            ELSE IF tenant === 'WBS':<br/>
-            &nbsp;&nbsp;show 15 WBS features<br/>
-            &nbsp;&nbsp;handle WBS workflows<br/>
-            &nbsp;&nbsp;apply WBS rules<br/>
-            ... 500 more conditions
-        ]
-        Code --> Problems[🔥 Problems:<br/>• Impossible to test<br/>• 3 weeks to add feature<br/>• Breaks constantly<br/>• Performance issues]
+        Giant --> Code["Complex IF/ELSE logic<br/>WLAC: 20 features<br/>WBS: 15 features<br/>500+ conditions"]
+        Code --> Problems["Problems:<br/>Impossible to test<br/>3 weeks to add feature<br/>Breaks constantly<br/>Performance issues"]
     end
     
-    subgraph "✅ Our Composable Approach"
+    subgraph "Our Composable Approach"
         Base[Shared Atoms]
         Base --> Comp1[WLAC Components<br/>Uses shared atoms +<br/>WLAC-specific logic]
         Base --> Comp2[WBS/Baer Components<br/>Uses shared atoms +<br/>WBS-specific logic]
         
-        Comp1 --> Benefits[✨ Benefits:<br/>• Test only what changed<br/>• 3 days to add feature<br/>• Isolated failures<br/>• Fast performance]
+        Comp1 --> Benefits["Benefits:<br/>Test only what changed<br/>3 days to add feature<br/>Isolated failures<br/>Fast performance"]
         Comp2 --> Benefits
     end
     
@@ -191,17 +181,17 @@ GiantCheckout = (tenant) => {
 
 ```mermaid
 graph LR
-    subgraph "Building on WBS/Baer Foundation"
-        WBSBase[WBS/Baer Standard<br/>Core Features]
-        WBSBase --> Extend1[+ WLAC Extensions<br/>Store pickup<br/>Branch logic]
-        WBSBase --> Extend2[+ Future Apps<br/>Easy to add]
+    subgraph WBS_Foundation[Building on WBS/Baer Foundation]
+        WBSBase["WBS/Baer Standard<br/>Core Features"]
+        WBSBase --> Extend1["WLAC Extensions<br/>Store pickup<br/>Branch logic"]
+        WBSBase --> Extend2["Future Apps<br/>Easy to add"]
         
-        Extend1 --> Result1[WLAC App<br/>WBS base + extras]
-        Extend2 --> Result2[New Apps<br/>WBS base + custom]
+        Extend1 --> Result1["WLAC App<br/>WBS base + extras"]
+        Extend2 --> Result2["New Apps<br/>WBS base + custom"]
     end
     
-    subgraph "Shared Foundation"
-        Shared[API Layer ✓<br/>Mapping Layer ✓<br/>Atoms ✓<br/>Molecules ✓<br/>Basic Organisms ✓]
+    subgraph Shared_Foundation[Shared Foundation]
+        Shared["API Layer<br/>Mapping Layer<br/>Atoms<br/>Molecules<br/>Basic Organisms"]
         Shared --> WBSBase
     end
     
@@ -212,15 +202,15 @@ graph LR
 ### What This Means:
 ```
 WE ARE BUILDING:
-✓ WBS/Baer as the standard template
-✓ WLAC as "WBS + custom features"
-✓ Shared components library (atoms/molecules)
-✓ Unified API and mapping layers
+- WBS/Baer as the standard template
+- WLAC as "WBS + custom features"
+- Shared components library (atoms/molecules)
+- Unified API and mapping layers
 
 WE ARE NOT:
-✗ Making everything identical
-✗ Forcing WLAC into WBS structure
-✗ Creating one giant app for all
+- Making everything identical
+- Forcing WLAC into WBS structure
+- Creating one giant app for all
 ```
 
 ## 7. Where Development Time Actually Goes
@@ -238,17 +228,17 @@ pie title "Development Time Breakdown"
 graph TD
     subgraph "Week 1-2: Fast Progress"
         Setup[Project Setup]
-        Setup --> Atoms[Build Atoms<br/>✓ Buttons<br/>✓ Inputs<br/>✓ Cards]
-        Atoms --> Molecules[Build Molecules<br/>✓ Forms<br/>✓ Lists<br/>✓ Navigation]
+        Setup --> Atoms["Build Atoms<br/>Buttons<br/>Inputs<br/>Cards"]
+        Atoms --> Molecules["Build Molecules<br/>Forms<br/>Lists<br/>Navigation"]
     end
     
     subgraph "Week 3-10: Slow Progress"
-        Molecules --> Templates[Build Templates<br/>❌ WLAC Checkout different<br/>❌ WBS Cart different<br/>❌ Order flow different]
-        Templates --> Pages[Build Pages<br/>❌ 50+ unique screens<br/>❌ Complex state management<br/>❌ Platform differences]
+        Molecules --> Templates["Build Templates<br/>WLAC Checkout different<br/>WBS Cart different<br/>Order flow different"]
+        Templates --> Pages["Build Pages<br/>50+ unique screens<br/>Complex state management<br/>Platform differences"]
     end
     
     subgraph "Week 11-12: Integration Hell"
-        Pages --> Testing[Test Everything<br/>⚠️ Cross-app testing<br/>⚠️ Edge cases<br/>⚠️ Bug fixes]
+        Pages --> Testing["Test Everything<br/>Cross-app testing<br/>Edge cases<br/>Bug fixes"]
     end
     
     style Setup fill:#C8E6C9
@@ -287,6 +277,8 @@ gantt
 
 ## Executive Summary
 
+> 📊 **[View Work Concentration Analysis](concentration.MD)** - Visual comparison of WLAC vs WBS complexity
+
 ### Why Mobile Apps ≠ CMS (The Business Reality)
 
 ```mermaid
@@ -313,26 +305,26 @@ graph TD
 ### What We're Actually Building:
 
 1. **Shared Foundation (30% of work - 3 weeks)**
-    - ✅ API connections
-    - ✅ Basic UI components (buttons, cards, forms)
-    - ✅ Common utilities
+    - API connections
+    - Basic UI components (buttons, cards, forms)
+    - Common utilities
 
 2. **Custom Business Logic (70% of work - 9 weeks)**
-    - ❌ WLAC store pickup workflow (unique)
-    - ❌ WBS/Baer bulk ordering (unique)
-    - ❌ Different checkout processes
-    - ❌ Different page layouts
-    - ❌ Different user journeys
+    - WLAC store pickup workflow (unique)
+    - WBS/Baer bulk ordering (unique)
+    - Different checkout processes
+    - Different page layouts
+    - Different user journeys
 
 ### The Bottom Line:
 
 **3 Months is Accurate Because:**
-- ✅ We ARE reusing components where possible (30% shared)
-- ✅ We ARE building on WBS/Baer as standard
-- ✅ We ARE using composable architecture (faster than monolithic)
-- ❌ We CANNOT share business logic (store pickup ≠ bulk orders)
-- ❌ We CANNOT share page templates (different workflows)
-- ❌ We MUST test each app separately (different features)
+- We ARE reusing components where possible (30% shared)
+- We ARE building on WBS/Baer as standard
+- We ARE using composable architecture (faster than monolithic)
+- We CANNOT share business logic (store pickup != bulk orders)
+- We CANNOT share page templates (different workflows)
+- We MUST test each app separately (different features)
 
 **If we tried to share everything:**
 - Development time: 3 months → 6 months
