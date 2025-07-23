@@ -1,1 +1,1 @@
-![Bar charts comparing WLAC and WBSC concentrations. WLAC bar is taller than WBSC, showing higher concentration. Plain background with neutral tone. Text at the top reads WLAC VS WBSC.](WLAC-Vs-WBSC.png)
+![Bar charts comparing WLAC and WBSC concentrations. WLAC bar is taller than WBSC, showing higher concentration. Plain background with neutral tone. Text at the top reads WLAC VS WBSC.](images/WLAC-Vs-WBSC.png)
